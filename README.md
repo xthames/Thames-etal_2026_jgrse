@@ -39,6 +39,10 @@ _your output data references here_
 ## Reproduce my experiment
 1. Download all scripts from `workflow` to a common directory 
 2. Review scripts `SubmitExploreAndSolve.sh` and `ExploreAndSolveGeneralTXum_2025XI.m`. Add filepaths to this common directory such that each filepath in these scripts points to a valid location. Change usernames, path separators, etc where/if appropriate. The minimum viable directory hierarchy looks like:
+     * `ExploreAndSolveGeneralTXum_2015XI.m`
+     * `ExploreAndSolveTargetedTXum_2015XI.m`
+     * `SubmitExploreAndSolve.sh`
+     * `VolatileProcessing_2025XI.m`
      * `models/`
          * `fwd/`
              * `base/`
@@ -64,7 +68,7 @@ _your output data references here_
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
     * `varyfR`: can be `y` or `n`. Only necessary if `modelType=var`. Activates variable regassing
     * `varyphiRum`: can be `y` or `n`. Only necessary if `modelType=var`. Switches water mass conservation equation from EQ2 in the paper (default) to EQ3    
-4. If using a local machine, the same environment variables listed in 3. can be directly set in the section\ 
+4. If using a local machine, the same environment variables listed in 3. can be directly set in the section\
 `%% CONTROLLING WHAT TYPE OF MODEL TO RUN`
     | Script Name | Description | How to Run |
     | --- | --- | --- |
