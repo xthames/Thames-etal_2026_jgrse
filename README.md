@@ -52,7 +52,7 @@ _your output data references here_
 
    Both formats produce identical results, but note that using an HPC cluster performs the experiment approximately an order of magnitude faster.
 
-3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note: this example considers a Linux/SLURM environment*):\
+3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note: this example considers a Linux/SLURM environment*):
 
     | Script Name | Description | How to Run |
     | --- | --- | --- |
@@ -64,12 +64,19 @@ _your output data references here_
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
     * `varyfR`: can be `y` or `n`. Only necessary if `modelType=var`. Activates variable regassing
     * `varyphiRum`: can be `y` or `n`. Only necessary if `modelType=var`. Switches water mass conservation equation from EQ2 in the paper (default) to EQ3    
-4. If using a local machine, the same environment variables listed in 3. can be directly set in the section `%% CONTROLLING WHAT TYPE OF MODEL TO RUN`
+4. If using a local machine, the same environment variables listed in 3. can be directly set in the section\ 
+`%% CONTROLLING WHAT TYPE OF MODEL TO RUN`
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `ExploreAndSolveGeneralTXum_2025XI.m` | Script to run experiment with unrestricted parameter space | Execute script in IDE |
     | `ExploreAndSolveTargetedTXum_2025XI.m` | Script to run experiment with targeted parameter space | Execute script in IDE |
-5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple sets of the same environment variables maybe necessary. If so, you can manually include the "set" corresponding to those outputs by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for more)
+5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple sets of the same environment variables maybe necessary. If so, you can manually include the "set" corresponding to those outputs by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+6. The targeted parameter space from the paper has been left in the script. Determining the targeted parameter space was determined in the following way:
+    | Script Name | Description | Section | How to Run |
+    | --- | --- | --- | --- |
+    | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in Supporting Information | `%% FIND THE RANGES OF PARAMETERS TO TARGET` | Comment out other sections, execute script in IDE |
+    | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in main paper | `%% TARGETED OUTPUT ASSESSMENT USING JUST BEST-KNOWN CONSTRAINTS` | Comment out other sections, execute script in IDE |
+
 
 ## Reproduce my figures
 Use the scripts found in the `figures` directory to reproduce the figures used in this publication.
