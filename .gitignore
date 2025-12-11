@@ -218,3 +218,6 @@ rsconnect
 inst/shinyApp/temp.ini
 inst/shinyApp/test.ini
 packrat/lib*/
+
+# tokens
+ThamesFoley2025_token.txt
