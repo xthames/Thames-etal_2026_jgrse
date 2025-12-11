@@ -30,11 +30,7 @@ Thames, A. B. & Foley, B. J. Reconciling Coupled Thermal-Water Evolution Models 
 
 ## Data reference
 ### Output data
-Reference for each minted data source for your output data.  For example:
-
-Human, I.M. (2021). My output dataset name [Data set]. DataHub. https://doi.org/some-doi-number
-
-_your output data references here_
+Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconciling Coupled Thermal-Water Evolution Models (v1.0.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.17903920
 
 ## Reproduce my experiment
 1. Download all scripts from `workflow` to a common directory 
@@ -57,7 +53,6 @@ _your output data references here_
    Both formats produce identical results, but using the HPC cluster performs the experiment approximately an order of magnitude faster.
 
 3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note this example considers a Linux/SLURM environment*):
-
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `SubmitExploreAndSolve.sh` | Shell script to submit experiment as job | `sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum` |
@@ -74,7 +69,15 @@ _your output data references here_
     | --- | --- | --- |
     | `ExploreAndSolveGeneralTXum_2025XI.m` | Script to run experiment with unrestricted parameter space | Execute script in IDE |
     | `ExploreAndSolveTargetedTXum_2025XI.m` | Script to run experiment with targeted parameter space | Execute script in IDE |
-5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+5. Naming outputs happens automatically based on the environment variables. When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+    | Environment Variable | Option | Output Dataset Identifier |
+    | --- | --- | --- |
+    | `timeDirection` | `fwd`, `rev` | `FWD`, `REV` |
+    | `viscDep` | `conc`, `fug` | `CONC`, `FUG` |
+    | `viscStrength` | `strong`, `weak` | `STRONG`, `WEAK` |
+    | `modelType` | `base`, `var` | `BASE`, - |
+    | `varyfR` | `n`, `y` | -, `VarfR` |
+    | `varyphiRum` | `n`, `y` | -, `VarphiRum` |
 6. The targeted parameter space used in the paper has been left in the corresponding script; determining a new targeted parameter space can be performed in the following way:
     | Script Name | Description | Section | How to Run |
     | --- | --- | --- | --- |
