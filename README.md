@@ -38,7 +38,7 @@ _your output data references here_
 
 ## Reproduce my experiment
 1. Download all scripts from `workflow` to a common directory 
-2. Review scripts `SubmitExploreAndSolve.sh` and `ExploreAndSolveGeneralTXum_2025XI.m`. Add filepaths to this common directory such that each filepath in these scripts points to a valid location. Change usernames, path separators, etc where/if appropriate. The essential directory hierarchy looks like:
+2. Review scripts `SubmitExploreAndSolve.sh` and `ExploreAndSolveGeneralTXum_2025XI.m`. Add filepaths to this common directory such that each filepath in these scripts points to a valid location. Change usernames, path separators, etc where/if appropriate. The minimum viable directory hierarchy looks like:
      * `models/`
          * `fwd/`
              * `base/`
@@ -50,36 +50,26 @@ _your output data references here_
     * through an HPC cluster with `MATLAB2023a` or higher and a workload manager/job scheduler installed (e.g., using SLURM in a Linux environment)
     * on a local machine with `MATLAB2023a` or higher installed
 
-   Because this experiment can be run in two formats, the appropriate directory hierarchy will depend on the format the experiment is run in. Both formats produce identical results, but using an HPC cluster is appreciably faster.
+   Both formats produce identical results, but note that using an HPC cluster performs the experiment approximately an order of magnitude faster.
 
-3. If using an HPC environment (example here uses Linux/SLURM), use the following syntax:\
-`sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum`
+3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note: this example considers a Linux/SLURM environment*):\
+
+    | Script Name | Description | How to Run |
+    | --- | --- | --- |
+    | `SubmitExploreAndSolve.sh` | Shell script to submit experiment as job | `sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum` |
     * `scriptType`: can be `general` or `targeted`. Determines the script to run, either `ExploreAndSolveGeneralTXum_2025XI.m` or `ExploreAndSolveTargetedTXum_2025XI.m`
-    * `timeDirection`: can be `fwd` or `rev` (*note: legacy functionality, not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
+    * `timeDirection`: can be `fwd` or `rev` (*note: `rev` has legacy functionality and is not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
     * `viscDep`: can be `conc` or `fug`. Determines if viscosity is dependent on mantle water concentration or mantle water fugacity
     * `viscStrength`: can be `strong` or `weak`. Determines the value of the power law for water in viscosity
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
-    * `varyfR`: can be `y` or `n`. Only necessary if `modelType=y`. Activates variable regassing
-    * `varyphiRum`: can be `y` or `n`. Only necessary if `modelType=y`. Switches water mass conservation equation from EQ2 in paper (default) to EQ3    
-
-4. If using a local machine, the same environment variables listed in 3. can be directly set in the script
-
-### Exploring models with unrestricted parameter space
-1. Install the software components required to conduct the experiment from [contributing modeling software](#contributing-modeling-software)
-2. Download and install the supporting [input data](#input-data) required to conduct the experiment
-3. Run the following scripts in the `workflow` directory to recreate this experiment:
-
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `step_one.py` | Script to run the first part of my experiment | `python3 step_one.py -f /path/to/inputdata/file_one.csv` |
-| `step_two.py` | Script to run the second part of my experiment | `python3 step_two.py -o /path/to/my/outputdir` |
-
-4. Download and unzip the [output data](#output-data) from my experiment 
-5. Run the following scripts in the `workflow` directory to compare my outputs to those from the publication
-
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `compare.py` | Script to compare my outputs to the original | `python3 compare.py --orig /path/to/original/data.csv --new /path/to/new/data.csv` |
+    * `varyfR`: can be `y` or `n`. Only necessary if `modelType=var`. Activates variable regassing
+    * `varyphiRum`: can be `y` or `n`. Only necessary if `modelType=var`. Switches water mass conservation equation from EQ2 in the paper (default) to EQ3    
+4. If using a local machine, the same environment variables listed in 3. can be directly set in the section `%% CONTROLLING WHAT TYPE OF MODEL TO RUN`
+    | Script Name | Description | How to Run |
+    | --- | --- | --- |
+    | `ExploreAndSolveGeneralTXum_2025XI.m` | Script to run experiment with unrestricted parameter space | Execute script in IDE |
+    | `ExploreAndSolveTargetedTXum_2025XI.m` | Script to run experiment with targeted parameter space | Execute script in IDE |
+5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple sets of the same environment variables maybe necessary. If so, you can manually include the "set" corresponding to those outputs by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for more)
 
 ## Reproduce my figures
 Use the scripts found in the `figures` directory to reproduce the figures used in this publication.
