@@ -50,15 +50,15 @@ _your output data references here_
     * through an HPC cluster with `MATLAB2023a` or higher and a workload manager/job scheduler installed (e.g., using SLURM in a Linux environment)
     * on a local machine with `MATLAB2023a` or higher installed
 
-   Both formats produce identical results, but note that using an HPC cluster performs the experiment approximately an order of magnitude faster.
+   Both formats produce identical results, but using the HPC cluster performs the experiment approximately an order of magnitude faster.
 
-3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note: this example considers a Linux/SLURM environment*):
+3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note this example considers a Linux/SLURM environment*):
 
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `SubmitExploreAndSolve.sh` | Shell script to submit experiment as job | `sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum` |
     * `scriptType`: can be `general` or `targeted`. Determines the script to run, either `ExploreAndSolveGeneralTXum_2025XI.m` or `ExploreAndSolveTargetedTXum_2025XI.m`
-    * `timeDirection`: can be `fwd` or `rev` (*note: `rev` has legacy functionality and is not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
+    * `timeDirection`: can be `fwd` or `rev` (*note `rev` has legacy functionality and is not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
     * `viscDep`: can be `conc` or `fug`. Determines if viscosity is dependent on mantle water concentration or mantle water fugacity
     * `viscStrength`: can be `strong` or `weak`. Determines the value of the power law for water in viscosity
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
@@ -70,8 +70,8 @@ _your output data references here_
     | --- | --- | --- |
     | `ExploreAndSolveGeneralTXum_2025XI.m` | Script to run experiment with unrestricted parameter space | Execute script in IDE |
     | `ExploreAndSolveTargetedTXum_2025XI.m` | Script to run experiment with targeted parameter space | Execute script in IDE |
-5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple sets of the same environment variables maybe necessary. If so, you can manually include the "set" corresponding to those outputs by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
-6. The targeted parameter space from the paper has been left in the script. Determining the targeted parameter space was determined in the following way:
+5. Naming outputs happens automatically. When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+6. The targeted parameter space used in the paper has been left in the corresponding script; determining a new targeted parameter space can be performed in the following way:
     | Script Name | Description | Section | How to Run |
     | --- | --- | --- | --- |
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in Supporting Information | `%% FIND THE RANGES OF PARAMETERS TO TARGET` | Comment out other sections, execute script in IDE |
