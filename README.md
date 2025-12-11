@@ -29,14 +29,6 @@ Reconciling Earth's thermal evolution with geochemical observations remains a fu
 Thames, A. B. & Foley, B. J. Reconciling Coupled Thermal-Water Evolution Models of Earth with Observations through Variable Regassing Efficiency. *Journal of Geophysical Research: Solid Earth*. (In Preparation).
 
 ## Data reference
-
-### Input data
-Reference for each minted data source for your input data.  For example:
-
-Human, I.M. (2021). My input dataset name [Data set]. DataHub. https://doi.org/some-doi-number
-
-_your input data references here_
-
 ### Output data
 Reference for each minted data source for your output data.  For example:
 
@@ -44,21 +36,24 @@ Human, I.M. (2021). My output dataset name [Data set]. DataHub. https://doi.org/
 
 _your output data references here_
 
-
-## Contributing modeling software
-| Model | Version | Repository Link | DOI |
-|-------|---------|-----------------|-----|
-| model 1 | version | link to code repository | link to DOI dataset |
-| model 2 | version | link to code repository | link to DOI dataset |
-| component 1 | version | link to code repository | link to DOI dataset |
-
 ## Reproduce my experiment
-Fill in detailed info here or link to other documentation to thoroughly walkthrough how to use the contents of this repository to reproduce your experiment. Below is an example.
+1. Download all scripts from `workflow` to a common directory 
+2. Review scripts `SubmitExploreAndSolve.sh` and `ExploreAndSolveGeneralTXum_2025XI.m`. Create/restructure this directory such that each existing filepath points to a valid location. The essential directory hierarchy looks like:
+ * `models/`
+     * `fwd/`
+         * `base/`
+         * `var/`
+     * `rev/`
+ * `supplemental/`
+The experiment can be run in two formats:
+ * through an HPC cluster with MATLAB and a workload manager/job scheduler installed (e.g., using SLURM in a Linux environment)
+ * on a local machine with MATLAB installed
+Because this experiment can be run in two formats, the appropriate directory hierarchy will depend on the format the experiment is run in. Both formats produce identical results, but using an HPC cluster is appreciably faster
 
-
+### Exploring models with unrestricted parameter space
 1. Install the software components required to conduct the experiment from [contributing modeling software](#contributing-modeling-software)
 2. Download and install the supporting [input data](#input-data) required to conduct the experiment
-3. Run the following scripts in the `workflow` directory to re-create this experiment:
+3. Run the following scripts in the `workflow` directory to recreate this experiment:
 
 | Script Name | Description | How to Run |
 | --- | --- | --- |
