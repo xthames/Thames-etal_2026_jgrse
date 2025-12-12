@@ -29,6 +29,10 @@ Reconciling Earth's thermal evolution with geochemical observations remains a fu
 Thames, A. B. & Foley, B. J. Reconciling Coupled Thermal-Water Evolution Models of Earth with Observations through Variable Regassing Efficiency. *Journal of Geophysical Research: Solid Earth*. (In Preparation).
 
 ## Data reference
+### Input data
+ * Supplementary data from [Herzberg et al. (2010)](https://doi.org/10.1016/j.epsl.2010.01.022). Rename to `Herzberg_etal_2010_Supplemental.xls` and store in `supplemental`
+ * Supplementary data from [Condie et al. (2016)](https://doi.org/10.1016/j.gsf.2016.01.006). Rename to `Condie_etal_2016_Supplemental.xlsx` and store in `supplemental`
+
 ### Output data
 Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconciling Coupled Thermal-Water Evolution Models (v1.0.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.17903920
 
@@ -44,15 +48,16 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
              * `base/`
              * `var/`
          * `rev/`
+     * `plots/`
      * `supplemental/`
 
    The experiment can be run in two formats:
     * through an HPC cluster with `MATLAB2023a` or higher and a workload manager/job scheduler installed (e.g., using SLURM in a Linux environment)
     * on a local machine with `MATLAB2023a` or higher installed
 
-   Both formats produce identical results, but using the HPC cluster performs the experiment approximately an order of magnitude faster.
+   Both formats produce identical results, but using the HPC cluster performs the experiment approximately an order of magnitude faster
 
-3. If using the HPC format, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note this example considers a Linux/SLURM environment*):
+3. **If using the HPC format**, submit `SubmitExploreAndSolve.sh` as a job using the appropriate syntax (*note this example considers a Linux/SLURM environment*):
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `SubmitExploreAndSolve.sh` | Shell script to submit experiment as job | `sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum` |
@@ -63,15 +68,16 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
     * `varyfR`: can be `y` or `n`. Only necessary if `modelType=var`. Activates variable regassing
     * `varyphiRum`: can be `y` or `n`. Only necessary if `modelType=var`. Switches water mass conservation equation from EQ2 in the paper (default) to EQ3    
-4. If using a local machine, the same environment variables listed in 3. can be directly set in the section\
+4. **If using a local machine**, the same environment variables listed in 3. can be directly set in the section\
 `%% CONTROLLING WHAT TYPE OF MODEL TO RUN`
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `ExploreAndSolveGeneralTXum_2025XI.m` | Script to run experiment with unrestricted parameter space | Execute script in IDE |
     | `ExploreAndSolveTargetedTXum_2025XI.m` | Script to run experiment with targeted parameter space | Execute script in IDE |
-5. Naming outputs happens automatically based on the environment variables:
+5. Both a file of chosen inputs/calculated present-day outputs (with suffix `MC`) and a file of time-series data (with suffix `TS`) are created by running the above scripts and saved to the corresponding folder in the hierarchy. Naming outputs happens automatically based on the environment variables:
     | Environment Variable | Option | Output Dataset Identifier |
     | --- | --- | --- |
+    | `scriptType` | `general`, `targeted` | -, `Targeted` |
     | `timeDirection` | `fwd`, `rev` | `FWD`, `REV` |
     | `viscDep` | `conc`, `fug` | `CONC`, `FUG` |
     | `viscStrength` | `strong`, `weak` | `STRONG`, `WEAK` |
@@ -79,7 +85,10 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | `varyfR` | `n`, `y` | -, `VarfR` |
     | `varyphiRum` | `n`, `y` | -, `VarphiRum` |
     
-    When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+    However, additional distinguishing language is sometimes needed for the outputs:
+     * When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+     * When running `ExploreAndSolveTargetedTXum_2025XI.m`, distinguishing between a reduced set of present-day observations and the full set (see the paper's Supporting Information for more) can be tagged by including either `Essential` and `Full` in the filename (see `VolatileProcesing_2025XI.m` for specific examples) 
+
 6. The targeted parameter space used in the paper has been left in the corresponding script; determining a new targeted parameter space can be performed in the following way:
     | Script Name | Description | Section | How to Run |
     | --- | --- | --- | --- |
@@ -87,7 +96,7 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in main paper | `%% TARGETED OUTPUT ASSESSMENT USING JUST BEST-KNOWN CONSTRAINTS` | Comment out other sections, execute script in IDE |
 
 ## Reproduce my figures
-After creating the output data from the steps outlined above -- or downloading the output data used in the paper from the Zenodo repository and placing them in the same hierarchy listed above -- to recreate the figures simply proceed as follows:
+After creating the output data from the steps outlined above -- or downloading the output data used in the paper from the Zenodo repository and placing them in the hierarchy listed above -- to recreate the figures simply proceed as follows:
 
 | Figure Number(s) | Script Name | Description | Section | How to Run |
 | --- | --- | --- | --- | --- |
