@@ -29,10 +29,6 @@ Reconciling Earth's thermal evolution with geochemical observations remains a fu
 Thames, A. B. & Foley, B. J. Reconciling Coupled Thermal-Water Evolution Models of Earth with Observations through Variable Regassing Efficiency. *Journal of Geophysical Research: Solid Earth*. (In Preparation).
 
 ## Data reference
-### Input data
- * Supplementary data from [Herzberg et al. (2010)](https://doi.org/10.1016/j.epsl.2010.01.022). Rename to `Herzberg_etal_2010_Supplemental.xls` and store in `supplemental`
- * Supplementary data from [Condie et al. (2016)](https://doi.org/10.1016/j.gsf.2016.01.006). Rename to `Condie_etal_2016_Supplemental.xlsx` and store in `supplemental`
-
 ### Output data
 Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconciling Coupled Thermal-Water Evolution Models (v1.0.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.17903920
 
@@ -62,7 +58,7 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | --- | --- | --- |
     | `SubmitExploreAndSolve.sh` | Shell script to submit experiment as job | `sbatch SubmitExploreAndSolve.sh scriptType timeDirection viscDep viscStrength modelType varyfR varyphiRum` |
     * `scriptType`: can be `general` or `targeted`. Determines the script to run, either `ExploreAndSolveGeneralTXum_2025XI.m` or `ExploreAndSolveTargetedTXum_2025XI.m`
-    * `timeDirection`: can be `fwd` or `rev` (*note `rev` has legacy functionality and is not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
+    * `timeDirection`: can be `fwd` or `rev` (*note that while accepted `rev` has legacy functionality and is not used in this experiment*). Determines if the model starts at t=0 Gyr and runs forwards or at t=4.54 Gyr and runs backwards
     * `viscDep`: can be `conc` or `fug`. Determines if viscosity is dependent on mantle water concentration or mantle water fugacity
     * `viscStrength`: can be `strong` or `weak`. Determines the value of the power law for water in viscosity
     * `modelType`: can be `base` or `var`. Determines if the model can accept variable regassing (`var`) or not (`base`)
@@ -85,9 +81,7 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | `varyfR` | `n`, `y` | -, `VarfR` |
     | `varyphiRum` | `n`, `y` | -, `VarphiRum` |
     
-    However, additional distinguishing language is sometimes needed for the outputs:
-     * When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
-     * When running `ExploreAndSolveTargetedTXum_2025XI.m`, distinguishing between a reduced set of present-day observations and the full set (see the paper's Supporting Information for more) can be tagged by including either `Essential` and `Full` in the filename (see `VolatileProcesing_2025XI.m` for specific examples) 
+    However, additional distinguishing language is sometimes needed for the outputs. When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
 
 6. The targeted parameter space used in the paper has been left in the corresponding script; determining a new targeted parameter space can be performed in the following way:
     | Script Name | Description | Section | How to Run |
@@ -95,8 +89,13 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in Supporting Information | `%% FIND THE RANGES OF PARAMETERS TO TARGET` | Comment out other sections, execute script in IDE |
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in main paper | `%% TARGETED OUTPUT ASSESSMENT USING JUST BEST-KNOWN CONSTRAINTS` | Comment out other sections, execute script in IDE |
 
+    Additional distinguishing language is sometimes needed for these outputs, too. When running `ExploreAndSolveTargetedTXum_2025XI.m`, using the reduced set of present-day observations or the full set (see the paper's Supporting Information for more) can be tagged by including either `Essential` and `Full` in the filename (see `VolatileProcesing_2025XI.m` for specific examples) 
+
 ## Reproduce my figures
 After creating the output data from the steps outlined above -- or downloading the output data used in the paper from the Zenodo repository and placing them in the hierarchy listed above -- to recreate the figures simply proceed as follows:
+
+ 1. Download supplementary data from [Herzberg et al. (2010)](https://doi.org/10.1016/j.epsl.2010.01.022). Rename to `Herzberg_etal_2010_Supplemental.xls` and store in `supplemental/`
+ 2. Download supplementary data from [Condie et al. (2016)](https://doi.org/10.1016/j.gsf.2016.01.006). Rename to `Condie_etal_2016_Supplemental.xlsx` and store in `supplemental/`
 
 | Figure Number(s) | Script Name | Description | Section | How to Run |
 | --- | --- | --- | --- | --- |
