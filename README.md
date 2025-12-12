@@ -81,15 +81,15 @@ Thames, A. B. & Foley, B. J. (2025). Output Data for Thames & Foley -- Reconcili
     | `varyfR` | `n`, `y` | -, `VarfR` |
     | `varyphiRum` | `n`, `y` | -, `VarphiRum` |
     
-    However, additional distinguishing language is sometimes needed for the outputs. When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+    However, additional distinguishing language is sometimes needed for the outputs
+     * When considering models with variable regassing efficiency, multiple runs may be necessary to find a sufficient number of realizations that align with present-day estimates. If so, you can manually distinguish between each "set" by including `_set#_` after the `_viscStrength_` identifier and before `_VarfR_` in the output file name (see `VolatileProcesing_2025XI.m` for specific examples)
+     * When running `ExploreAndSolveTargetedTXum_2025XI.m`, using the reduced set of present-day observations or the full set (see the paper's Supporting Information for more) can be tagged by including either `Essential` and `Full` in the filename before the `Targeted` identifier (see `VolatileProcesing_2025XI.m` for specific examples) 
 
 6. The targeted parameter space used in the paper has been left in the corresponding script; determining a new targeted parameter space can be performed in the following way:
     | Script Name | Description | Section | How to Run |
     | --- | --- | --- | --- |
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in Supporting Information | `%% FIND THE RANGES OF PARAMETERS TO TARGET` | Comment out other sections, execute script in IDE |
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in main paper | `%% TARGETED OUTPUT ASSESSMENT USING JUST BEST-KNOWN CONSTRAINTS` | Comment out other sections, execute script in IDE |
-
-    Additional distinguishing language is sometimes needed for these outputs, too. When running `ExploreAndSolveTargetedTXum_2025XI.m`, using the reduced set of present-day observations or the full set (see the paper's Supporting Information for more) can be tagged by including either `Essential` and `Full` in the filename (see `VolatileProcesing_2025XI.m` for specific examples) 
 
 ## Reproduce my figures
 After creating the output data from the steps outlined above -- or downloading the output data used in the paper from the Zenodo repository and placing them in the hierarchy listed above -- to recreate the figures simply proceed as follows:
