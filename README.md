@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17916988.svg)](https://doi.org/10.5281/zenodo.17916988) 
 
-# Thames-etal_2025_jgrse
+# Thames-etal_2026_jgrse
 
 **Reconciling Coupled Thermal-Water Evolution Models of Earth with Observations through Variable Regassing Efficiency**
 
@@ -21,7 +21,7 @@ Thames, A. B. & Foley, B. J. Reconciling Coupled Thermal-Water Evolution Models 
 ### Output data
 Thames, A. (2025). Output Data for Thames & Foley -- Reconciling Coupled Thermal-Water Evolution Models (1.0.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.17903920
 
-## Reproduce my experiment
+## Reproduce our experiment
 1. Download all scripts from `workflow` to a common directory 
 2. Review scripts `SubmitExploreAndSolve.sh` and `ExploreAndSolveGeneralTXum_2025XI.m`. Add filepaths to this common directory such that each filepath in these scripts points to a valid location. Change usernames, path separators, etc where/if appropriate. The minimum viable directory hierarchy looks like:
      * `ExploreAndSolveGeneralTXum_2015XI.m`
@@ -80,7 +80,7 @@ Thames, A. (2025). Output Data for Thames & Foley -- Reconciling Coupled Thermal
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in Supporting Information | `%% FIND THE RANGES OF PARAMETERS TO TARGET` | Comment out other sections, execute script in IDE |
     | `VolatileProcessing_2025XI.m` | Identify parameter ranges discussed in main paper | `%% TARGETED OUTPUT ASSESSMENT USING JUST BEST-KNOWN CONSTRAINTS` | Comment out other sections, execute script in IDE |
 
-## Reproduce my figures
+## Reproduce our figures
 After creating the output data from the steps outlined above -- or downloading the output data used in the paper from the Zenodo repository and placing them in the hierarchy listed above -- to recreate the figures simply proceed as follows on a local machine:
 
  1. Download supplementary data from [Herzberg et al. (2010)](https://doi.org/10.1016/j.epsl.2010.01.022). Rename to `Herzberg_etal_2010_Supplemental.xls` and store in `supplemental/`
